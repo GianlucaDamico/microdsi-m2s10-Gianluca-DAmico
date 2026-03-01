@@ -3,36 +3,32 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MicroDSI · Lab</title>
-  <link rel="stylesheet" href="assets/styles.css"/>
+  <title>Process Studio · Lab</title> <link rel="stylesheet" href="assets/styles.css"/>
 </head>
 <body>
   <header class="topbar">
     <div class="row">
       <div class="brand">
-        <b>MicroDSI</b>
-        <span>Lab · Inventario + Priorización + SIPOC</span>
-      </div>
+        <b>Process Studio</b> <span>Lab · Diseño y Exportación de Procesos</span> </div>
       <nav class="nav">
         <a class="btn" href="index.html">Inicio</a>
         <a class="btn" href="feed.html">Feed</a>
-        <a class="btn" href="pista.htm">Pistas</a>
-      </nav>
+        <a class="btn" href="pista.htm">Pistas</a> </nav>
     </div>
   </header>
 
   <main class="container">
     <section class="panel">
-      <h3>🧪 Laboratorio</h3>
+      <h3>🧪 Centro de Diseño (Lab)</h3>
       <p>
-        Aquí se fabrica el entregable. Escribe rápido, pero deja huella: 1 dato o condición por decisión.
-        Cuando estés listo, genera el Markdown y descárgalo.
+        Aquí consolidamos la arquitectura de valor. Documenta con precisión: un dato o condición real por cada decisión tomada. 
+        Al finalizar, genera y descarga tu archivo en formato Markdown.
       </p>
 
       <div class="kpi" style="margin-top:12px">
         <div class="box"><b>Meta</b><span>10–15 procesos L1 + Top 5 priorizados + 1 SIPOC</span></div>
-        <div class="box"><b>Tip</b><span>En priorización: justifica con volumen/tiempo/retrabajo/PII</span></div>
-        <div class="box"><b>Final</b><span>Exporta .md y te vas en paz</span></div>
+        <div class="box"><b>Tip</b><span>Justifica con volumen, tiempo, retrabajo o criticidad PII</span></div>
+        <div class="box"><b>Final</b><span>Genera el .md y descarga para tu entrega</span></div>
       </div>
     </section>
 
@@ -41,17 +37,17 @@
     <section class="formRow">
       <div class="panel">
         <h3>1) Inventario (L1) — “Verbo + Objeto”</h3>
-        <label>10–15 procesos, uno por línea</label>
+        <label>Listado de 10–15 procesos</label>
         <textarea id="inv" placeholder="Ej: Gestionar incidencias&#10;Ej: Dar de alta proveedor&#10;Ej: Gestionar permisos&#10;..."></textarea>
-        <div class="footerHint">Atajo mental: si no empieza con un verbo, no pasa el filtro.</div>
+        <div class="footerHint">Filtro de calidad: debe iniciar imperativamente con un verbo de acción.</div>
       </div>
 
       <div class="panel">
-        <h3>2) Priorización — Top 5</h3>
-        <label>Formato sugerido (1 por línea): Proceso | Impacto | Esfuerzo | Riesgo | Score | Nota</label>
-        <textarea id="prio" placeholder="Gestionar incidencias | 5 | 3 | 3 | -1 | 6000 tickets/mes, retrabajo 25%&#10;Alta proveedor | 4 | 4 | 4 | -4 | lead time alto, compliance&#10;..."></textarea>
+        <h3>2) Priorización — Selección Estratégica</h3>
+        <label>Formato: Proceso | Impacto | Esfuerzo | Riesgo | Score | Justificación</label>
+        <textarea id="prio" placeholder="Gestionar incidencias | 5 | 3 | 3 | -1 | 6000 tickets/mes, retrabajo 25%&#10;Alta proveedor | 4 | 4 | 4 | -4 | lead time alto, cumplimiento&#10;..."></textarea>
         <div class="footerHint">
-          Score recomendado: Impacto − Esfuerzo − Riesgo (o usa ratio, pero no mezcles).
+          Usa una métrica real (volumen/tiempo) para justificar tu prioridad.
         </div>
       </div>
     </section>
@@ -59,30 +55,5 @@
     <hr class="sep"/>
 
     <section class="panel">
-      <h3>3) SIPOC — el “contrato” (1 página)</h3>
-      <label>Completa Suppliers / Inputs / Process (4–6 pasos) / Outputs / Customers</label>
-      <textarea id="sipoc" placeholder="Suppliers: ...&#10;Inputs: ... (PII: sí/no)&#10;Process: 1) ... 2) ... 3) ... 4) ...&#10;Outputs: ...&#10;Customers: ..."></textarea>
-
-      <div class="actions">
-        <button class="btn primary" id="btnExport" type="button">✨ Generar Markdown</button>
-        <button class="btn" id="btnDownload" type="button">⬇️ Descargar .md</button>
-      </div>
-
-      <div class="footerHint">
-        Mini-chequeo: ¿hay cliente claro? ¿outputs claros? ¿4–6 pasos? ¿1 restricción (PII/auditoría/criticidad)?
-      </div>
-    </section>
-
-    <hr class="sep"/>
-
-    <section class="panel">
-      <h3>Salida (Markdown)</h3>
-      <label>Se genera aquí (puedes copiar/pegar o descargar)</label>
-      <textarea id="mdOut" placeholder="Aquí aparecerá el Markdown exportable..."></textarea>
-      <div class="footerHint">Consejo: añade 2 líneas finales con tu trade-off principal y la restricción dominante.</div>
-    </section>
-  </main>
-
-  <script src="assets/app.js"></script>
-</body>
-</html>
+      <h3>3) SIPOC — Estructura del Proceso</h3>
+      <label>Define Proveedores / Entradas / Pasos (4–6) / Salidas / Clientes</label>
