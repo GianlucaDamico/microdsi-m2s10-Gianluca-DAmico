@@ -3,57 +3,66 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Process Studio · Lab</title> <link rel="stylesheet" href="assets/styles.css"/>
+  <title>Process Studio · Lab</title>
+  <link rel="stylesheet" href="assets/styles.css"/>
 </head>
 <body>
   <header class="topbar">
     <div class="row">
       <div class="brand">
-        <b>Process Studio</b> <span>Lab · Diseño y Exportación de Procesos</span> </div>
+        <b>Process Studio</b>
+        <span>Lab · Diseño y Exportación</span>
+      </div>
       <nav class="nav">
         <a class="btn" href="index.html">Inicio</a>
         <a class="btn" href="feed.html">Feed</a>
-        <a class="btn" href="pista.htm">Pistas</a> </nav>
+        <a class="btn" href="pista.htm">Pistas</a>
+      </nav>
     </div>
   </header>
 
   <main class="container">
     <section class="panel">
-      <h3>🧪 Centro de Diseño (Lab)</h3>
-      <p>
-        Aquí consolidamos la arquitectura de valor. Documenta con precisión: un dato o condición real por cada decisión tomada. 
-        Al finalizar, genera y descarga tu archivo en formato Markdown.
-      </p>
-
-      <div class="kpi" style="margin-top:12px">
-        <div class="box"><b>Meta</b><span>10–15 procesos L1 + Top 5 priorizados + 1 SIPOC</span></div>
-        <div class="box"><b>Tip</b><span>Justifica con volumen, tiempo, retrabajo o criticidad PII</span></div>
-        <div class="box"><b>Final</b><span>Genera el .md y descarga para tu entrega</span></div>
-      </div>
-    </section>
-
-    <hr class="sep"/>
-
-    <section class="formRow">
-      <div class="panel">
-        <h3>1) Inventario (L1) — “Verbo + Objeto”</h3>
-        <label>Listado de 10–15 procesos</label>
-        <textarea id="inv" placeholder="Ej: Gestionar incidencias&#10;Ej: Dar de alta proveedor&#10;Ej: Gestionar permisos&#10;..."></textarea>
-        <div class="footerHint">Filtro de calidad: debe iniciar imperativamente con un verbo de acción.</div>
-      </div>
-
-      <div class="panel">
-        <h3>2) Priorización — Selección Estratégica</h3>
-        <label>Formato: Proceso | Impacto | Esfuerzo | Riesgo | Score | Justificación</label>
-        <textarea id="prio" placeholder="Gestionar incidencias | 5 | 3 | 3 | -1 | 6000 tickets/mes, retrabajo 25%&#10;Alta proveedor | 4 | 4 | 4 | -4 | lead time alto, cumplimiento&#10;..."></textarea>
-        <div class="footerHint">
-          Usa una métrica real (volumen/tiempo) para justificar tu prioridad.
-        </div>
-      </div>
+      <h3>🧪 Laboratorio de Procesos</h3>
+      <p>Completa las tres secciones para generar tu entregable oficial[cite: 94].</p>
     </section>
 
     <hr class="sep"/>
 
     <section class="panel">
-      <h3>3) SIPOC — Estructura del Proceso</h3>
-      <label>Define Proveedores / Entradas / Pasos (4–6) / Salidas / Clientes</label>
+      <h3>1) Inventario L1 (10-15 procesos)</h3>
+      <textarea id="inv" rows="6" placeholder="Ej: Gestionar altas..."></textarea>
+      <div class="footerHint">Usa el formato: Verbo + Objeto[cite: 97, 114].</div>
+    </section>
+
+    <section class="panel">
+      <h3>2) Priorización (Top 5)</h3>
+      <textarea id="prio" rows="6" placeholder="Proceso | Impacto | Esfuerzo | Riesgo | Nota técnica..."></textarea>
+      <div class="footerHint">Justifica con datos (volumen, tiempo o PII)[cite: 98, 115].</div>
+    </section>
+
+    <section class="panel">
+      <h3>3) Diagrama SIPOC (Contrato)</h3>
+      <textarea id="sipoc" rows="8" placeholder="Suppliers: ...&#10;Inputs: ...&#10;Process: 1... 2... 3... 4...&#10;Outputs: ...&#10;Customers: ..."></textarea>
+      <div class="footerHint">Debe tener entre 4 y 6 pasos[cite: 99, 117].</div>
+    </section>
+
+    <hr class="sep"/>
+
+    <section class="panel" style="text-align: center;">
+      <div class="actions">
+        <button class="btn primary" id="btnExport" type="button">✨ Generar Markdown</button>
+        <button class="btn" id="btnDownload" type="button">⬇️ Descargar .md</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h3>Salida Final (Markdown)</h3>
+      <textarea id="mdOut" rows="10" readonly placeholder="Aquí aparecerá tu informe cuando pulses 'Generar Markdown'..."></textarea>
+      <div class="footerHint">Este es el texto que se descargará en tu archivo .md[cite: 101, 106].</div>
+    </section>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
