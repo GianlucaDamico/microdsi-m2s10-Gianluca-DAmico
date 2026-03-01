@@ -3,19 +3,15 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MicroDSI · Pistas</title>
-  <link rel="stylesheet" href="assets/styles.css"/>
+  <title>Process Studio · Pistas</title> <link rel="stylesheet" href="assets/styles.css"/>
 </head>
 <body>
   <header class="topbar">
     <div class="row">
       <div class="brand">
-        <b>MicroDSI</b>
-        <span>Pistas · Caso guiado (M2-S10)</span>
-      </div>
+        <b>Process Studio</b> <span>Pistas · Resolución de Casos</span> </div>
 
       <nav class="nav">
-        <!-- Selector de Track (controlado por assets/app.js) -->
         <div class="btn" style="padding:8px 10px; border-radius:999px;">
           <small style="margin-right:8px; color:var(--muted);">Track</small>
           <select id="trackSel" style="border:none; background:transparent; color:var(--text); outline:none;">
@@ -34,16 +30,15 @@
 
   <main class="container">
     <div class="panel">
-      <b>Progreso</b>
+      <b>Análisis en progreso</b>
       <div class="progress"><i id="prog"></i></div>
       <span class="footerHint">
-        Desplázate horizontalmente (trackpad/rueda). Cada pista pide una respuesta breve con 1 dato o condición.
+        Desplázate horizontalmente para avanzar. Responde cada pista con un dato o condición específica del track elegido.
       </span>
     </div>
   </main>
 
   <main id="pistaWrap" class="pistaWrap"></main>
 
-  <script src="assets/app.js"></script>
-</body>
+  <script src="assets/app.js"></script> </body>
 </html>
