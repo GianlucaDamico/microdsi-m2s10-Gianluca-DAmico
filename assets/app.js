@@ -1,10 +1,10 @@
 // =====================
-// MicroDSI · Tracks
+// Process Studio · Tracks
 // =====================
 const TRACKS = [
   { id: "itsm", name: "ITSM Triage" },
-  { id: "hr",   name: "HR" },
-  { id: "proc", name: "Procurement" },
+  { id: "hr",   name: "HR Operations" },
+  { id: "proc", name: "Procurement & Supply" },
 ];
 
 function getTrackFromURL() {
@@ -17,174 +17,130 @@ function getTrack() {
 }
 function setTrack(t) {
   localStorage.setItem("track", t);
-  // si NO viene por URL, refrescamos para re-render
   const u = new URL(window.location.href);
   if (!u.searchParams.get("track")) location.reload();
 }
 
 // =====================
 // Micro-lecciones (M2-S10)
-// Cada lesson tiene examples por track
+// Extensiones: Añadidas 3 tarjetas extra para nota Pro 
 // =====================
 const LESSONS = [
   {
-    tag: "M2-S10 · Fundamentos",
-    title: "Proceso ≠ Procedimiento ≠ Capacidad",
-    text: "Capacidad: lo que la organización sabe hacer. Proceso: transforma entradas en salidas para un cliente. Procedimiento: cómo se ejecuta un paso.",
+    tag: "Fundamentos",
+    title: "Proceso ≠ Procedimiento",
+    text: "El proceso transforma; el procedimiento detalla el 'cómo'. No confundas la capacidad (qué sabemos hacer) con el flujo operativo.",
     examples: {
-      itsm: ["Capacidad: Soporte TI", "Proceso: Gestionar incidencias", "Procedimiento: Clasificar severidad y prioridad"],
-      hr:   ["Capacidad: Gestión de personas", "Proceso: Gestionar solicitudes HR", "Procedimiento: Verificar documentación de permiso"],
-      proc: ["Capacidad: Compras", "Proceso: Alta de proveedor", "Procedimiento: Validación fiscal y compliance"],
+      itsm: ["Capacidad: Soporte Técnico", "Proceso: Gestionar incidencias", "Procedimiento: Reset de contraseña en AD"],
+      hr:   ["Capacidad: People Care", "Proceso: Gestionar bajas", "Procedimiento: Check-list de devolución de equipo"],
+      proc: ["Capacidad: Abastecimiento", "Proceso: Alta de proveedor", "Procedimiento: Verificación de IBAN bancario"],
     },
-    check: "Escribe 1 ejemplo real de tu entorno para cada categoría (capacidad/proceso/procedimiento).",
+    check: "Escribe 1 capacidad y el proceso L1 que la materializa.",
   },
   {
-    tag: "M2-S10 · Límites",
-    title: "Trigger + Output: la definición mínima de proceso",
-    text: "Si no puedes decir qué lo inicia (trigger) y qué produce (output), no tienes un proceso defendible: tienes un área o una intención.",
+    tag: "Límites",
+    title: "Trigger & Output",
+    text: "Un proceso sin disparador es una intención. Un proceso sin salida es un agujero negro. Define fronteras claras.",
     examples: {
-      itsm: ["Trigger: ticket creado o alerta monitoring", "Output: resolución o escalado con trazabilidad"],
-      hr:   ["Trigger: solicitud de nómina/permiso", "Output: respuesta oficial + registro (sin PII innecesaria)"],
-      proc: ["Trigger: proveedor solicita alta", "Output: proveedor dado de alta en ERP o rechazo motivado"],
+      itsm: ["Trigger: Alerta de monitoreo (P1)", "Output: Incidencia resuelta + Post-mortem"],
+      hr:   ["Trigger: Solicitud de certificado", "Output: Documento firmado en portal"],
+      proc: ["Trigger: Requisición de compra", "Output: Orden de compra (PO) emitida"],
     },
-    check: "Define trigger y output de un proceso L1 de tu inventario (2 líneas).",
+    check: "Identifica el trigger exacto de tu proceso candidato.",
   },
   {
-    tag: "M2-S10 · Arquitectura",
-    title: "L0/L1/L2: granularidad correcta",
-    text: "L0 = macroprocesos; L1 = catálogo; L2 = variante operativa candidata a rediseño. Evita saltar directo a L3.",
+    tag: "Jerarquía",
+    title: "Nivel L1: El mapa del tesoro",
+    text: "L1 es el catálogo de servicios. Ni tan genérico como el departamento, ni tan detalle como el paso a paso.",
     examples: {
-      itsm: ["L0: Operaciones TI", "L1: Gestión de incidencias", "L2: Triage por canal (portal/telefono)"],
-      hr:   ["L0: PeopleOps", "L1: Gestión de solicitudes", "L2: Solicitud sensible (PII) vs general"],
-      proc: ["L0: Compras", "L1: Alta de proveedores", "L2: Alta estándar vs alta con excepción (riesgo)"],
+      itsm: ["L0: Soporte TI", "L1: Gestionar incidencias", "L2: Triage de hardware"],
+      hr:   ["L0: RRHH", "L1: Gestionar nóminas", "L2: Incidencias de pago"],
+      proc: ["L0: Finanzas", "L1: Homologar proveedores", "L2: Proveedores internacionales"],
     },
-    check: "Convierte 1 L0 en 3 procesos L1 y elige 1 variante L2.",
+    check: "Nombra 3 procesos L1 de tu área.",
   },
   {
-    tag: "M2-S10 · Inventario",
-    title: "Catálogo L1: regla Verbo + Objeto",
-    text: "Un proceso L1 no es un departamento. Fórmula: verbo + objeto. Debe ser repetible, medible y con cliente.",
+    tag: "Calidad",
+    title: "La Regla de Oro: Verbo + Objeto",
+    text: "Si no empieza por verbo, no es un proceso. Los nombres de departamentos (ej: 'Ventas') no son procesos.",
     examples: {
-      itsm: ["Gestionar incidencias", "Gestionar solicitudes", "Gestionar problemas (root cause)"],
-      hr:   ["Gestionar permisos", "Gestionar altas/bajas", "Gestionar consultas de nómina"],
-      proc: ["Dar de alta proveedor", "Gestionar órdenes de compra", "Gestionar homologación"],
+      itsm: ["✅ Resolver ticket", "❌ Departamento de Soporte"],
+      hr:   ["✅ Tramitar permiso", "❌ Gestión de Vacaciones"],
+      proc: ["✅ Validar factura", "❌ Contabilidad"],
     },
-    check: "Escribe 10 procesos L1 (uno por línea) siguiendo Verbo+Objeto.",
+    check: "Revisa tu inventario: ¿todos empiezan con verbo infinitivo?",
   },
   {
-    tag: "M2-S10 · Medición",
-    title: "Baseline: si no mides antes, no demuestras mejora",
-    text: "Un rediseño sin baseline es un acto de fe. Elige 1 métrica de valor, 1 de coste y 1 de riesgo.",
+    tag: "Priorización",
+    title: "Impacto vs Esfuerzo vs Riesgo",
+    text: "No automatices lo que no aporta. Busca procesos de alto volumen, alto error o alta sensibilidad (PII).",
     examples: {
-      itsm: ["Valor: % misrouting o FCR triage", "Coste: AHT triage", "Riesgo: % tickets críticos mal clasificados"],
-      hr:   ["Valor: tiempo a respuesta", "Coste: €/caso o min/caso", "Riesgo: incidentes PII / 1000 casos"],
-      proc: ["Valor: lead time alta", "Coste: nº iteraciones por doc incompleta", "Riesgo: excepciones sin trazabilidad"],
+      itsm: ["Volumen: 500 tickets/día", "Riesgo: Caída de servicios críticos", "Esfuerzo: Bajo (reglas de negocio)"],
+      hr:   ["Volumen: 50 bajas/mes", "Riesgo: Multas GDPR (PII)", "Esfuerzo: Medio (integración ERP)"],
+      proc: ["Volumen: 200 facturas/semana", "Riesgo: Fraude en pagos", "Esfuerzo: Alto (OCR + Firma)"],
     },
-    check: "Define 3 métricas (valor/coste/riesgo) y di cómo las medirías (1 línea cada una).",
+    check: "Calcula el score: (Impacto * 2) - Esfuerzo.",
+  },
+  // --- TARJETAS EXTRA PARA NOTA (Extensiones 11.1) ---
+  {
+    tag: "Gobernanza",
+    title: "Restricción Dominante",
+    text: "Todo proceso tiene un 'jefe invisible': PII (Privacidad), Auditoría, o Latencia. Identifícalo antes de diseñar.",
+    examples: {
+      itsm: ["Restricción: Latencia (SLA < 2h)", "Control: Alertas automáticas"],
+      hr:   ["Restricción: PII Sensible", "Control: Encriptación y acceso RBAC"],
+      proc: ["Restricción: Auditoría fiscal", "Control: Log inmutable de aprobaciones"],
+    },
+    check: "Define la restricción dominante de tu proceso ganador.",
   },
   {
-    tag: "M2-S10 · Dolor",
-    title: "Dolores típicos: retrabajo, esperas, errores, variabilidad",
-    text: "Señales para candidato: alto volumen, mucho rebote/retrabajo, colas/esperas, errores recurrentes, alta variabilidad entre agentes.",
+    tag: "Estrategia",
+    title: "El concepto de No-Alcance (MVP)",
+    text: "Para que un proyecto nazca, debe tener límites. ¿Qué NO vas a resolver en esta fase? [cite: 143]",
     examples: {
-      itsm: ["Misrouting frecuente", "KB desactualizada", "Reaperturas y escalados innecesarios"],
-      hr:   ["Respuestas inconsistentes", "Búsqueda manual en políticas", "Documentación incompleta -> ida y vuelta"],
-      proc: ["Docs incompletos", "Aprobaciones opacas", "Dependencia ERP y compliance"],
+      itsm: ["No-alcance: Reparaciones físicas de hardware"],
+      hr:   ["No-alcance: Cálculo de impuestos internacionales"],
+      proc: ["No-alcance: Negociación de contratos marco"],
     },
-    check: "Marca 2 dolores y aporta 1 evidencia: dato, ejemplo o síntoma observable.",
+    check: "Escribe 2 puntos de no-alcance para tu MVP.",
   },
   {
-    tag: "M2-S10 · Riesgo",
-    title: "Riesgo y gobernanza: PII, auditoría, criticidad",
-    text: "No priorices solo por volumen. PII, auditoría y errores críticos cambian el diseño (HITL, logs, RBAC).",
+    tag: "Arquitectura",
+    title: "SIPOC: El contrato de diseño",
+    text: "Define Proveedores, Entradas, Procesos, Salidas y Clientes. Es la brújula contra el 'scope creep'.",
     examples: {
-      itsm: ["PII: media (según contenido del ticket)", "Auditoría: necesaria para post-mortem", "Criticidad: incidentes P1"],
-      hr:   ["PII: alta (nómina, contratos)", "Auditoría: obligatoria", "Criticidad: impacto legal/reputacional"],
-      proc: ["PII: media (datos fiscales)", "Auditoría: aprobaciones y trazabilidad", "Criticidad: fraude/compliance"],
+      itsm: ["S: Usuario | I: Ticket | P: 5 pasos | O: Cierre | C: Empleado"],
+      hr:   ["S: Manager | I: Solicitud | P: 4 pasos | O: Contrato | C: Nuevo empleado"],
+      proc: ["S: Proveedor | I: Factura | P: 6 pasos | O: Pago | C: Finanzas"],
     },
-    check: "Asigna un nivel de riesgo (1–5) y la razón (PII/auditoría/criticidad).",
-  },
-  {
-    tag: "M2-S10 · Selección",
-    title: "Matriz Impacto / Esfuerzo / Riesgo",
-    text: "Prioriza con números: Impacto (valor) vs Esfuerzo (cambio) vs Riesgo (gobernanza). Decide top-3 antes de modelar en detalle.",
-    examples: {
-      itsm: ["Impacto alto si tickets/mes alto", "Esfuerzo medio por integraciones ITSM/KB", "Riesgo medio por P1"],
-      hr:   ["Impacto medio-alto por volumen y reputación", "Esfuerzo medio por RBAC y data policy", "Riesgo alto por PII"],
-      proc: ["Impacto alto por lead time y dependencia", "Esfuerzo alto por ERP/approval", "Riesgo medio-alto por compliance"],
-    },
-    check: "Puntúa 5 procesos (1–5) y calcula score (elige fórmula y sé consistente).",
-  },
-  {
-    tag: "M2-S10 · Contrato",
-    title: "SIPOC: contrato mínimo antes de AS-IS/TO-BE",
-    text: "SIPOC define límites y evita scope creep: suppliers/inputs/process/outputs/customers. Si esto no cierra, el rediseño se rompe.",
-    examples: {
-      itsm: ["Suppliers: usuarios, monitoring", "Inputs: ticket+contexto", "Outputs: resolución/escalado", "Customers: usuario+owner"],
-      hr:   ["Suppliers: empleados, payroll", "Inputs: solicitud+documentos", "Outputs: respuesta+registro", "Customers: empleado+HR"],
-      proc: ["Suppliers: proveedor, compras", "Inputs: docs fiscales", "Outputs: alta/rechazo", "Customers: compras+finanzas"],
-    },
-    check: "Completa SIPOC con 4–6 pasos en ‘Process’ (verbos).",
-  },
-  {
-    tag: "M2-S10 · Frontera",
-    title: "Frontera del sistema: qué NO entra",
-    text: "Define el no-alcance ahora. Es parte de la calidad: protege tiempo, reduce conflicto y hace viable el MVP.",
-    examples: {
-      itsm: ["No-alcance: automatizar cambios mayores (CAB)", "No-alcance: cerrar P1 sin humano"],
-      hr:   ["No-alcance: asesoría legal personalizada", "No-alcance: decisiones disciplinarias"],
-      proc: ["No-alcance: negociación de precios", "No-alcance: excepciones sin aprobación humana"],
-    },
-    check: "Escribe 2 puntos de no-alcance para tu proceso candidato.",
-  },
-  {
-    tag: "M2-S10 · Preparación IA",
-    title: "¿Dónde la IA ayuda sin romper gobernanza?",
-    text: "IA suele aportar en: extracción/clasificación, búsqueda (RAG), resumen y recomendación. Añade guardrails si hay PII o criticidad.",
-    examples: {
-      itsm: ["Clasificación semántica", "RAG sobre KB", "Resumen de ticket para escalado"],
-      hr:   ["Extracción de campos (sin guardar PII libre)", "RAG sobre políticas", "Asistente de redacción con plantillas"],
-      proc: ["Extracción/validación docs", "Detección de inconsistencias", "Rutas de aprobación sugeridas"],
-    },
-    check: "Propón 1 palanca IA + 1 control (HITL/auditoría/RBAC/minimización).",
-  },
-  {
-    tag: "Puente a M2-S11",
-    title: "Salida del día: candidato + baseline + SIPOC",
-    text: "Hoy se cierra selección y contrato. En M2-S11 harás AS-IS/TO-BE paso a paso y gobernanza (RACI/RAID).",
-    examples: {
-      itsm: ["Salida: SIPOC triage + baseline misrouting", "Preparar AS-IS dolores por paso"],
-      hr:   ["Salida: SIPOC solicitudes + baseline tiempo respuesta", "Preparar restricciones PII y audit"],
-      proc: ["Salida: SIPOC alta proveedor + baseline lead time", "Preparar dependencias ERP"],
-    },
-    check: "Entrega 1: inventario L1 + matriz priorización + SIPOC del ganador (1 página).",
-  },
+    check: "Asegúrate de tener entre 4 y 6 pasos en tu SIPOC.",
+  }
 ];
 
 // =====================
-// Pistas (caso guiado) por track
+// Pistas (caso guiado)
 // =====================
 const PISTA_STEPS = {
   itsm: [
-    { t:"ITSM Triage · Objetivo", b:"Reducir misrouting y retrabajo sin perder trazabilidad.", q:"¿Quién es el cliente del proceso (customers)?"},
-    { t:"L0/L1/L2", b:"L1: Gestión de incidencias. L2: triage por severidad y canal.", q:"Escribe 1 L2 alternativo (variante operativa)."},
-    { t:"Dolores AS-IS", b:"Misrouting, KB desactualizada, escalados innecesarios, P1 críticos.", q:"Marca 2 dolores medibles y 1 evidencia."},
-    { t:"Prioriza", b:"Impacto alto si volumen alto; riesgo por P1 y auditoría.", q:"Puntúa Impacto/Esfuerzo/Riesgo (1–5) y explica."},
-    { t:"SIPOC", b:"Cierra límites del proceso para evitar scope creep.", q:"Completa Suppliers/Inputs/Process(4–6)/Outputs/Customers."},
+    { t:"Objetivo Triage", b:"Optimizar la clasificación inicial para evitar rebotes entre equipos.", q:"¿Cuál es la métrica de éxito (KPI) principal?"},
+    { t:"Variantes (L2)", b:"No es lo mismo un ticket de software que uno de acceso VIP.", q:"Propón una variante L2 para casos de alta prioridad."},
+    { t:"Evidencia de Dolor", b:"Buscamos datos: % de tickets mal asignados o tiempo de espera.", q:"Aporta un dato supuesto de retrabajo (ej: 30%)."},
+    { t:"Justificación", b:"¿Por qué este y no otro? Usa Impacto y Riesgo.", q:"Escribe la frase: 'Priorizo esto porque...'"},
+    { t:"Contrato SIPOC", b:"Define quién entrega la información y quién la recibe.", q:"Lista 5 pasos del proceso empezando por verbos."},
   ],
   hr: [
-    { t:"HR · Objetivo", b:"Responder solicitudes con PII minimizada y auditoría.", q:"¿Qué tipo de solicitudes entran y cuáles NO?"},
-    { t:"L0/L1/L2", b:"L1: Gestionar solicitudes HR. L2: sensible vs general.", q:"Define un L2 sensible y un L2 general."},
-    { t:"Riesgo PII", b:"Aquí el riesgo manda el diseño: RBAC, minimización, logs.", q:"¿Qué input contiene PII y cómo lo minimizas?"},
-    { t:"Prioriza", b:"No priorices solo por volumen: penaliza riesgo alto.", q:"Puntúa Impacto/Esfuerzo/Riesgo y justifica."},
-    { t:"SIPOC", b:"Contrato mínimo antes de rediseñar.", q:"Completa SIPOC y añade 1 control (auditoría/HITL/RBAC)."},
+    { t:"Foco en Personas", b:"Centralizar solicitudes manteniendo la privacidad de los datos.", q:"¿Quién es el cliente final del proceso?"},
+    { t:"Riesgo GDPR", b:"Manejamos datos sensibles (nóminas, salud).", q:"¿Qué medida de control aplicarás a la PII?"},
+    { t:"Automatización", b:"Identifica tareas repetitivas de poco valor.", q:"¿Qué paso del proceso es candidato a IA?"},
+    { t:"Priorización", b:"Impacto en la experiencia del empleado vs Esfuerzo técnico.", q:"Puntúa de 1 a 5 el Esfuerzo necesario."},
+    { t:"SIPOC", b:"Asegura que el Output sea un registro auditable.", q:"Describe el Output final y dónde se guarda."},
   ],
   proc: [
-    { t:"Procurement · Objetivo", b:"Reducir lead time de alta proveedor y rechazos por docs incompletos.", q:"¿Qué output define ‘alta exitosa’?"},
-    { t:"L0/L1/L2", b:"L1: Alta de proveedor. L2: estándar vs excepción.", q:"Define la excepción más común y por qué existe."},
-    { t:"Dolores AS-IS", b:"Ida y vuelta por documentos, aprobaciones opacas, dependencia ERP.", q:"Marca 2 dolores y 1 dependencia clave."},
-    { t:"Prioriza", b:"Alto impacto, alto esfuerzo: exige MVP y no-alcance.", q:"Puntúa Impacto/Esfuerzo/Riesgo y explica el trade-off."},
-    { t:"SIPOC", b:"Contrato mínimo + compliance.", q:"Completa SIPOC e indica dónde entra auditoría/aprobación."},
+    { t:"Eficiencia Compras", b:"Reducir el tiempo desde la solicitud hasta la orden de compra.", q:"¿Qué dispara el inicio del proceso?"},
+    { t:"Compliance", b:"El proceso debe cumplir con auditoría financiera obligatoria.", q:"¿Quién debe aprobar la excepción en el L2?"},
+    { t:"Dolores", b:"Falta de documentos, firmas perdidas o ERP lento.", q:"Identifica el 'cuello de botella' principal."},
+    { t:"Criterio", b:"Justifica la inversión basándote en el volumen anual.", q:"Dato: ¿Cuántas facturas/altas se procesan al mes?"},
+    { t:"SIPOC", b:"Proveedores externos y clientes internos.", q:"Lista los 4 proveedores (Suppliers) de información."},
   ],
 };
 
@@ -197,10 +153,8 @@ function el(tag, cls){ const n=document.createElement(tag); if(cls) n.className=
 function ensureTrackSelector() {
   const sel = $("#trackSel");
   if (!sel) return;
-
   const t = getTrack();
   sel.value = t;
-
   sel.addEventListener("change", (e) => {
     setTrack(e.target.value);
   });
@@ -226,17 +180,14 @@ function toggleMark(idx, btn){
 function renderFeed(){
   const wrap = $("#feedWrap");
   if(!wrap) return;
-
   const t = getTrack();
-  wrap.innerHTML = ""; // re-render limpio
+  wrap.innerHTML = ""; 
 
   LESSONS.forEach((L, idx) => {
     const snap = el("section","cardSnap");
     const card = el("article","lessonCard");
-
     const main = el("div","lessonMain");
     const side = el("aside","lessonSide");
-
     const top = el("div","titleRow");
     const badge = el("span","badge");
     badge.textContent = L.tag;
@@ -262,11 +213,9 @@ function renderFeed(){
     main.appendChild(p);
     main.appendChild(call);
 
-    // Side blocks: ejemplos del track actual
     const ex = el("div","sideBlock");
-    const exH = el("h4"); exH.textContent = `Ejemplo · ${TRACKS.find(x=>x.id===t).name}`;
+    const exH = el("h4"); exH.textContent = `Caso · ${TRACKS.find(x=>x.id===t).name}`;
     const ul = el("ul");
-
     (L.examples[t] || []).forEach(txt => {
       const li = el("li"); li.textContent = txt;
       ul.appendChild(li);
@@ -274,15 +223,14 @@ function renderFeed(){
     ex.appendChild(exH); ex.appendChild(ul);
 
     const act = el("div","sideBlock");
-    const actH = el("h4"); actH.textContent = "Acciones rápidas";
+    const actH = el("h4"); actH.textContent = "Navegación";
     const actions = el("div","actions");
     actions.appendChild(pill("Ir al Lab", "→", "lab.html"));
-    actions.appendChild(pill("Pistas del caso", "⇢", "pista.html"));
+    actions.appendChild(pill("Ver Pistas", "⇢", "pista.htm")); // Corregido a .htm
     act.appendChild(actH); act.appendChild(actions);
 
     side.appendChild(ex);
     side.appendChild(act);
-
     card.appendChild(main);
     card.appendChild(side);
     snap.appendChild(card);
@@ -290,13 +238,9 @@ function renderFeed(){
   });
 }
 
-// =====================
-// Pista (secuencia horizontal por track)
-// =====================
 function setupPista(){
   const wrap = $("#pistaWrap");
   if(!wrap) return;
-
   const t = getTrack();
   const steps = PISTA_STEPS[t] || [];
   wrap.innerHTML = "";
@@ -309,10 +253,10 @@ function setupPista(){
       <h2 style="margin:10px 0 6px 0">${s.t}</h2>
       <p style="margin:0;color:var(--muted);line-height:1.45">${s.b}</p>
       <hr class="sep"/>
-      <b style="display:block;font-size:13px">Check</b>
+      <b style="display:block;font-size:13px">Check de Arquitectura</b>
       <p style="margin:6px 0 10px 0;color:var(--muted)">${s.q}</p>
-      <textarea placeholder="Escribe aquí..."></textarea>
-      <div class="footerHint">Tip: breve + 1 dato o condición.</div>
+      <textarea placeholder="Escribe tu respuesta técnica aquí..."></textarea>
+      <div class="footerHint">Tip: Sé específico con el dato.</div>
     `;
     sec.appendChild(card);
     wrap.appendChild(sec);
@@ -320,7 +264,6 @@ function setupPista(){
 
   const prog = $("#prog");
   if(!prog) return;
-
   const io = new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -330,12 +273,11 @@ function setupPista(){
       }
     });
   }, { root: wrap, threshold: .6 });
-
   [...wrap.children].forEach(ch=>io.observe(ch));
 }
 
 // =====================
-// Lab export
+// Lab export (Mejorado con trade-off y no-alcance) 
 // =====================
 function exportLabToMarkdown(){
   const out = $("#mdOut");
@@ -347,19 +289,24 @@ function exportLabToMarkdown(){
   const tName = TRACKS.find(x=>x.id===t)?.name || t;
 
   const md = [
-    `# M2-S10 · Entregable rápido · ${tName}`,
+    `# Process Studio · Reporte M2-S10`,
+    `**Track seleccionado:** ${tName}`,
     "",
-    "## Inventario (L1)",
-    inv ? inv : "_(vacío)_",
+    "## 1. Inventario de Procesos L1",
+    inv ? inv : "_(Pendiente: completar 10-15 procesos)_",
     "",
-    "## Priorización (Impacto/Esfuerzo/Riesgo)",
-    pr ? pr : "_(vacío)_",
+    "## 2. Matriz de Priorización",
+    "| Proceso | Impacto | Esfuerzo | Riesgo | Justificación con Dato |",
+    "| :--- | :---: | :---: | :---: | :--- |",
+    pr ? pr : "_(Pendiente: completar Top 5)_",
     "",
-    "## SIPOC",
-    sip ? sip : "_(vacío)_",
+    "## 3. Diagrama SIPOC (Proceso Ganador)",
+    sip ? sip : "_(Pendiente: completar contrato SIPOC)_",
     "",
-    "## Nota (trade-off)",
-    "_(2 criterios numéricos + 1 restricción)_"
+    "## 4. Decisiones Estratégicas (Trade-off) ",
+    "> **Restricción Dominante:** (Ej: PII / Auditoría / Latencia)",
+    "> **No-Alcance del MVP:** (2 cosas que no harás en esta fase)",
+    "> **Trade-off principal:** (Ej: Calidad de datos vs Velocidad de respuesta)"
   ].join("\n");
 
   out.value = md;
@@ -378,21 +325,14 @@ function downloadText(filename, text){
 // =====================
 document.addEventListener("DOMContentLoaded", ()=>{
   ensureTrackSelector();
-
-  // Feed
   if($("#feedWrap")) renderFeed();
-
-  // Pistas
   setupPista();
-
-  // Lab
   const exp = $("#btnExport");
   if(exp) exp.addEventListener("click", exportLabToMarkdown);
-
   const dl = $("#btnDownload");
   if(dl) dl.addEventListener("click", ()=>{
     const text = $("#mdOut").value || "";
     const t = getTrack();
-    downloadText(`m2-s10_${t}_entregable.md`, text);
+    downloadText(`process_studio_m2s10_${t}.md`, text);
   });
 });
