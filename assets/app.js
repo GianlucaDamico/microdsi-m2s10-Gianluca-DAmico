@@ -22,125 +22,191 @@ function setTrack(t) {
 }
 
 // =====================
-// Micro-lecciones (M2-S10)
-// Extensiones: Añadidas 3 tarjetas extra para nota Pro 
+// Micro-lecciones (M2-S10) - VERSION PERSONALIZADA
 // =====================
 const LESSONS = [
   {
-    tag: "Fundamentos",
-    title: "Proceso ≠ Procedimiento",
-    text: "El proceso transforma; el procedimiento detalla el 'cómo'. No confundas la capacidad (qué sabemos hacer) con el flujo operativo.",
+    tag: "M2-S10 · Fundamentos",
+    title: "Capacidad vs Proceso: No son lo mismo",
+    text: "La capacidad es el potencial (lo que podemos hacer), mientras que el proceso es la ejecución real para entregar valor[cite: 3].",
     examples: {
-      itsm: ["Capacidad: Soporte Técnico", "Proceso: Gestionar incidencias", "Procedimiento: Reset de contraseña en AD"],
-      hr:   ["Capacidad: People Care", "Proceso: Gestionar bajas", "Procedimiento: Check-list de devolución de equipo"],
-      proc: ["Capacidad: Abastecimiento", "Proceso: Alta de proveedor", "Procedimiento: Verificación de IBAN bancario"],
+      itsm: ["Capacidad: Soporte Técnico", "Proceso: Gestión de incidencias", "Procedimiento: Reset de password"],
+      hr:   ["Capacidad: People Ops", "Proceso: Gestión de permisos", "Procedimiento: Firma de baja"],
+      proc: ["Capacidad: Compras", "Proceso: Alta de proveedor", "Procedimiento: Validación de CIF"],
     },
-    check: "Escribe 1 capacidad y el proceso L1 que la materializa.",
+    check: "Escribe un ejemplo de tu área: 1 capacidad y 1 proceso L1[cite: 82].",
   },
   {
-    tag: "Límites",
-    title: "Trigger & Output",
-    text: "Un proceso sin disparador es una intención. Un proceso sin salida es un agujero negro. Define fronteras claras.",
+    tag: "M2-S10 · Límites",
+    title: "El Trigger y el Output",
+    text: "Un proceso sin un disparador (trigger) claro nunca empieza, y sin un resultado (output) no sirve para nada[cite: 7].",
     examples: {
-      itsm: ["Trigger: Alerta de monitoreo (P1)", "Output: Incidencia resuelta + Post-mortem"],
-      hr:   ["Trigger: Solicitud de certificado", "Output: Documento firmado en portal"],
-      proc: ["Trigger: Requisición de compra", "Output: Orden de compra (PO) emitida"],
+      itsm: ["Trigger: Ticket creado", "Output: Incidencia cerrada"],
+      hr:   ["Trigger: Solicitud de vacaciones", "Output: Permiso aprobado en calendario"],
+      proc: ["Trigger: Proveedor envía docs", "Output: Proveedor validado en ERP"],
     },
-    check: "Identifica el trigger exacto de tu proceso candidato.",
+    check: "Define el trigger y el output de tu proceso ganador[cite: 82].",
   },
   {
-    tag: "Jerarquía",
-    title: "Nivel L1: El mapa del tesoro",
-    text: "L1 es el catálogo de servicios. Ni tan genérico como el departamento, ni tan detalle como el paso a paso.",
+    tag: "M2-S10 · Arquitectura",
+    title: "Niveles L0 a L2: No bajes demasiado",
+    text: "Mantén el diseño en el catálogo (L1) y variantes (L2). No te pierdas en el 'click a click' de L3 todavía[cite: 123].",
     examples: {
-      itsm: ["L0: Soporte TI", "L1: Gestionar incidencias", "L2: Triage de hardware"],
-      hr:   ["L0: RRHH", "L1: Gestionar nóminas", "L2: Incidencias de pago"],
-      proc: ["L0: Finanzas", "L1: Homologar proveedores", "L2: Proveedores internacionales"],
+      itsm: ["L0: Operaciones", "L1: Gestión de incidencias", "L2: Incidencias de Software"],
+      hr:   ["L0: RRHH", "L1: Solicitudes", "L2: Solicitud de nómina"],
+      proc: ["L0: Suministros", "L1: Compras", "L2: Compras de hardware"],
     },
-    check: "Nombra 3 procesos L1 de tu área.",
+    check: "Identifica un proceso L1 y propón dos variantes L2[cite: 82].",
   },
   {
-    tag: "Calidad",
-    title: "La Regla de Oro: Verbo + Objeto",
-    text: "Si no empieza por verbo, no es un proceso. Los nombres de departamentos (ej: 'Ventas') no son procesos.",
+    tag: "M2-S10 · Inventario",
+    title: "Catálogo L1: Verbo + Objeto",
+    text: "Un proceso debe ser medible y repetible. Usa siempre la fórmula de acción: Verbo + Objeto[cite: 114].",
     examples: {
-      itsm: ["✅ Resolver ticket", "❌ Departamento de Soporte"],
-      hr:   ["✅ Tramitar permiso", "❌ Gestión de Vacaciones"],
-      proc: ["✅ Validar factura", "❌ Contabilidad"],
+      itsm: ["Gestionar incidencias", "Configurar VPN", "Actualizar servidores"],
+      hr:   ["Contratar empleados", "Pagar nóminas", "Gestionar bajas"],
+      proc: ["Validar proveedores", "Aprobar facturas", "Auditar compras"],
     },
-    check: "Revisa tu inventario: ¿todos empiezan con verbo infinitivo?",
+    check: "Lista 10 procesos L1 siguiendo la regla Verbo + Objeto[cite: 97, 121].",
   },
   {
-    tag: "Priorización",
-    title: "Impacto vs Esfuerzo vs Riesgo",
-    text: "No automatices lo que no aporta. Busca procesos de alto volumen, alto error o alta sensibilidad (PII).",
+    tag: "M2-S10 · Medición",
+    title: "Baseline: Sin datos no hay mejora",
+    text: "Antes de rediseñar con IA, mide cuánto tardas hoy. Necesitas métricas de valor, coste y riesgo[cite: 116].",
     examples: {
-      itsm: ["Volumen: 500 tickets/día", "Riesgo: Caída de servicios críticos", "Esfuerzo: Bajo (reglas de negocio)"],
-      hr:   ["Volumen: 50 bajas/mes", "Riesgo: Multas GDPR (PII)", "Esfuerzo: Medio (integración ERP)"],
-      proc: ["Volumen: 200 facturas/semana", "Riesgo: Fraude en pagos", "Esfuerzo: Alto (OCR + Firma)"],
+      itsm: ["Valor: % SLA", "Coste: AHT de triaje", "Riesgo: % P1 mal clasificados"],
+      hr:   ["Valor: NPS empleado", "Coste: € por caso", "Riesgo: incidentes PII"],
+      proc: ["Valor: Lead time", "Coste: Minutos por doc", "Riesgo: Errores en contratos"],
     },
-    check: "Calcula el score: (Impacto * 2) - Esfuerzo.",
-  },
-  // --- TARJETAS EXTRA PARA NOTA (Extensiones 11.1) ---
-  {
-    tag: "Gobernanza",
-    title: "Restricción Dominante",
-    text: "Todo proceso tiene un 'jefe invisible': PII (Privacidad), Auditoría, o Latencia. Identifícalo antes de diseñar.",
-    examples: {
-      itsm: ["Restricción: Latencia (SLA < 2h)", "Control: Alertas automáticas"],
-      hr:   ["Restricción: PII Sensible", "Control: Encriptación y acceso RBAC"],
-      proc: ["Restricción: Auditoría fiscal", "Control: Log inmutable de aprobaciones"],
-    },
-    check: "Define la restricción dominante de tu proceso ganador.",
+    check: "Propón 3 métricas para tu baseline[cite: 82].",
   },
   {
-    tag: "Estrategia",
-    title: "El concepto de No-Alcance (MVP)",
-    text: "Para que un proyecto nazca, debe tener límites. ¿Qué NO vas a resolver en esta fase? [cite: 143]",
+    tag: "M2-S10 · Dolor",
+    title: "Identificando cuellos de botella",
+    text: "Busca procesos con mucho retrabajo, esperas infinitas o errores recurrentes[cite: 116].",
     examples: {
-      itsm: ["No-alcance: Reparaciones físicas de hardware"],
-      hr:   ["No-alcance: Cálculo de impuestos internacionales"],
-      proc: ["No-alcance: Negociación de contratos marco"],
+      itsm: ["Mucho rebote de tickets", "KB desactualizada", "Exceso de escalados"],
+      hr:   ["Búsqueda manual de leyes", "Docs incompletos", "Dudas repetitivas"],
+      proc: ["Aprobaciones lentas", "Falta de trazabilidad", "Errores en ERP"],
     },
-    check: "Escribe 2 puntos de no-alcance para tu MVP.",
+    check: "Señala 2 dolores críticos y aporta una evidencia[cite: 82].",
   },
   {
-    tag: "Arquitectura",
-    title: "SIPOC: El contrato de diseño",
-    text: "Define Proveedores, Entradas, Procesos, Salidas y Clientes. Es la brújula contra el 'scope creep'.",
+    tag: "M2-S10 · Riesgo",
+    title: "Gobernanza y PII",
+    text: "No todo es velocidad. Si hay datos personales (PII) o auditoría, el diseño debe ser más robusto[cite: 118].",
     examples: {
-      itsm: ["S: Usuario | I: Ticket | P: 5 pasos | O: Cierre | C: Empleado"],
-      hr:   ["S: Manager | I: Solicitud | P: 4 pasos | O: Contrato | C: Nuevo empleado"],
-      proc: ["S: Proveedor | I: Factura | P: 6 pasos | O: Pago | C: Finanzas"],
+      itsm: ["Riesgo: Datos de acceso", "Control: Logs"],
+      hr:   ["Riesgo: Datos salud/bancos", "Control: RBAC estricto"],
+      proc: ["Riesgo: Fraude fiscal", "Control: Segregación funciones"],
     },
-    check: "Asegúrate de tener entre 4 y 6 pasos en tu SIPOC.",
+    check: "Asigna un nivel de riesgo (1-5) a tu proceso[cite: 115].",
+  },
+  {
+    tag: "M2-S10 · Selección",
+    title: "Matriz de Priorización",
+    text: "Usa el score: Impacto vs Esfuerzo vs Riesgo. No elijas el proceso que más 'ruido' hace, sino el que más aporta[cite: 98, 122].",
+    examples: {
+      itsm: ["Impacto alto por volumen", "Esfuerzo bajo por IA"],
+      hr:   ["Riesgo alto por PII", "Esfuerzo medio"],
+      proc: ["Impacto medio", "Riesgo alto por auditoría"],
+    },
+    check: "Calcula el score de tus 5 procesos finalistas[cite: 115].",
+  },
+  {
+    tag: "M2-S10 · Contrato",
+    title: "SIPOC: El contrato del diseño",
+    text: "Define las fronteras antes de modelar: proveedores, entradas, proceso, salidas y clientes[cite: 117, 123].",
+    examples: {
+      itsm: ["Suppliers: Usuarios", "Customers: Negocio"],
+      hr:   ["Suppliers: Empleados", "Customers: RRHH"],
+      proc: ["Suppliers: Compras", "Customers: Proveedores"],
+    },
+    check: "Completa el SIPOC con 4-6 pasos en el proceso[cite: 99, 117].",
+  },
+  {
+    tag: "M2-S10 · Frontera",
+    title: "No-alcance: Protege tu MVP",
+    text: "Define qué NO vas a hacer. Es la única forma de entregar resultados rápidos y evitar el scope creep.",
+    examples: {
+      itsm: ["No-alcance: Cambios de hardware"],
+      hr:   ["No-alcance: Asesoría legal"],
+      proc: ["No-alcance: Negociación global"],
+    },
+    check: "Escribe 2 puntos que queden fuera de tu proyecto.",
+  },
+  {
+    tag: "M2-S10 · Preparación IA",
+    title: "Dónde ayuda realmente la IA",
+    text: "La IA brilla clasificando, resumiendo o buscando información (RAG), no tomando decisiones críticas sola[cite: 6].",
+    examples: {
+      itsm: ["Clasificación de tickets", "RAG sobre base de conocimientos"],
+      hr:   ["Resumen de CVs", "Detección de datos PII en chats"],
+      proc: ["Extracción de datos en facturas", "Validación de cumplimiento"],
+    },
+    check: "Propón una palanca de IA para tu proceso ganador[cite: 82].",
+  },
+  {
+    tag: "Puente a M2-S11",
+    title: "Preparando el AS-IS",
+    text: "Hoy terminas con el 'qué' y el 'quién'. Mañana en el S11 dibujarás el 'cómo' paso a paso[cite: 106].",
+    examples: {
+      itsm: ["Salida: SIPOC Triage"],
+      hr:   ["Salida: SIPOC Nómina"],
+      proc: ["Salida: SIPOC Compras"],
+    },
+    check: "Prepara tu entregable .md con el resumen de hoy[cite: 101, 112].",
+  },
+  // --- TARJETAS EXTRAS ---
+  {
+    tag: "M2-S10 · Extensión 1",
+    title: "Trade-offs: El arte de elegir",
+    text: "Diseñar procesos es elegir qué sacrificar. ¿Prefieres velocidad o precisión total? ¿IA autónoma o control humano?[cite: 144].",
+    examples: {
+      itsm: ["Velocidad de respuesta vs Precisión de triaje"],
+      hr:   ["Autonomía del empleado vs Control de datos PII"],
+      proc: ["Lead time corto vs Auditoría exhaustiva"],
+    },
+    check: "Define el trade-off principal de tu rediseño.",
+  },
+  {
+    tag: "M2-S10 · Extensión 2",
+    title: "Escalabilidad y Volumen",
+    text: "Un proceso que funciona para 10 casos puede romperse si llegan 1000. La IA permite escalar sin aumentar el equipo[cite: 116].",
+    examples: {
+      itsm: ["Automatizar el 80% de tickets comunes"],
+      hr:   ["Auto-servicio para solicitudes frecuentes"],
+      proc: ["Validación masiva de facturas"],
+    },
+    check: "¿Cuántos casos/mes soporta tu proceso actual?",
   }
 ];
 
+
 // =====================
-// Pistas (caso guiado)
+// Pistas (caso guiado) - PERSONALIZADAS Y CON EXTRA 
 // =====================
 const PISTA_STEPS = {
   itsm: [
-    { t:"Objetivo Triage", b:"Optimizar la clasificación inicial para evitar rebotes entre equipos.", q:"¿Cuál es la métrica de éxito (KPI) principal?"},
-    { t:"Variantes (L2)", b:"No es lo mismo un ticket de software que uno de acceso VIP.", q:"Propón una variante L2 para casos de alta prioridad."},
-    { t:"Evidencia de Dolor", b:"Buscamos datos: % de tickets mal asignados o tiempo de espera.", q:"Aporta un dato supuesto de retrabajo (ej: 30%)."},
-    { t:"Justificación", b:"¿Por qué este y no otro? Usa Impacto y Riesgo.", q:"Escribe la frase: 'Priorizo esto porque...'"},
-    { t:"Contrato SIPOC", b:"Define quién entrega la información y quién la recibe.", q:"Lista 5 pasos del proceso empezando por verbos."},
+    { t:"Objetivo ITSM", b:"Reducir el rebote de tickets (ping-pong) entre equipos técnicos[cite: 12].", q:"¿Quién es tu cliente final?"},
+    { t:"Arquitectura", b:"Define si es una incidencia de Hardware o Software (L2)[cite: 111].", q:"Escribe una variante operativa."},
+    { t:"Priorización", b:"Impacto alto si afecta a toda la oficina; Riesgo alto si hay PII[cite: 122].", q:"Pon nota de 1 a 5."},
+    { t:"SIPOC", b:"Mapea desde el usuario quejoso hasta la resolución[cite: 117].", q:"Escribe los 5 pasos del proceso."},
+    { t:"No-alcance (Extra)", b:"Cosas que no tocaremos para poder terminar el MVP.", q:"Escribe 2 exclusiones claras."},
   ],
   hr: [
-    { t:"Foco en Personas", b:"Centralizar solicitudes manteniendo la privacidad de los datos.", q:"¿Quién es el cliente final del proceso?"},
-    { t:"Riesgo GDPR", b:"Manejamos datos sensibles (nóminas, salud).", q:"¿Qué medida de control aplicarás a la PII?"},
-    { t:"Automatización", b:"Identifica tareas repetitivas de poco valor.", q:"¿Qué paso del proceso es candidato a IA?"},
-    { t:"Priorización", b:"Impacto en la experiencia del empleado vs Esfuerzo técnico.", q:"Puntúa de 1 a 5 el Esfuerzo necesario."},
-    { t:"SIPOC", b:"Asegura que el Output sea un registro auditable.", q:"Describe el Output final y dónde se guarda."},
+    { t:"Objetivo HR", b:"Gestionar peticiones de empleados con privacidad total[cite: 13].", q:"¿Qué solicitudes entran?"},
+    { t:"Seguridad", b:"El riesgo aquí es legal: cuidado con los datos de salud o bancos[cite: 118].", q:"¿Qué dato PII es más crítico?"},
+    { t:"Priorización", b:"Penaliza el esfuerzo si requiere integración con bancos[cite: 115].", q:"Justifica tu elección con un dato."},
+    { t:"SIPOC", b:"Entradas: solicitudes. Salidas: registros oficiales[cite: 123].", q:"Mapea el flujo de información."},
+    { t:"No-alcance (Extra)", b:"Límites del proyecto para no morir en el intento.", q:"Escribe 2 exclusiones claras."},
   ],
   proc: [
-    { t:"Eficiencia Compras", b:"Reducir el tiempo desde la solicitud hasta la orden de compra.", q:"¿Qué dispara el inicio del proceso?"},
-    { t:"Compliance", b:"El proceso debe cumplir con auditoría financiera obligatoria.", q:"¿Quién debe aprobar la excepción en el L2?"},
-    { t:"Dolores", b:"Falta de documentos, firmas perdidas o ERP lento.", q:"Identifica el 'cuello de botella' principal."},
-    { t:"Criterio", b:"Justifica la inversión basándote en el volumen anual.", q:"Dato: ¿Cuántas facturas/altas se procesan al mes?"},
-    { t:"SIPOC", b:"Proveedores externos y clientes internos.", q:"Lista los 4 proveedores (Suppliers) de información."},
+    { t:"Objetivo Compras", b:"Asegurar que los proveedores son fiables y rápidos[cite: 14].", q:"¿Qué define un 'alta exitosa'?"},
+    { t:"Compliance", b:"El riesgo es la auditoría y el posible fraude fiscal[cite: 116].", q:"¿Qué control de seguridad pondrías?"},
+    { t:"Priorización", b:"Impacto en el Lead Time total de la empresa[cite: 124].", q:"Dime por qué este proceso es el ganador."},
+    { t:"SIPOC", b:"Desde la oferta hasta el alta en el ERP[cite: 99].", q:"¿Cuáles son los pasos clave?"},
+    { t:"No-alcance (Extra)", b:"Lo que el consultor decide no arreglar hoy.", q:"Escribe 2 exclusiones claras."},
   ],
 };
 
